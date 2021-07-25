@@ -32,10 +32,10 @@ app.post("/api/insert", (req, res) => {
     });
 });
 
-app.delete("/api/delete/:movieName", (req, res) => {
-    const name = req.params.movieName;
-    const sqlDelete = "DELETE FROM crud_database.movie_reviews WHERE movieName = ?";
-    db.query(sqlDelete, name, (err, result) => {
+app.delete("/api/delete/:id", (req, res) => {
+    const id = req.params.id;
+    const sqlDelete = "DELETE FROM crud_database.movie_reviews WHERE id = ?";
+    db.query(sqlDelete, id, (err, result) => {
         if(err){
             console.log(err);
         }
@@ -43,10 +43,10 @@ app.delete("/api/delete/:movieName", (req, res) => {
 })
 
 app.put("/api/update", (req, res) => {
-    const name = req.body.movieName;
+    const id = req.body.id;
     const review = req.body.movieReview;
-    const sqlUpdate = "UPDATE crud_database.movie_reviews SET movieReview = ? WHERE movieName = ?";
-    db.query(sqlUpdate, [review, name], (err, result) => {
+    const sqlUpdate = "UPDATE crud_database.movie_reviews SET movieReview = ? WHERE id = ?";
+    db.query(sqlUpdate, [review, id], (err, result) => {
         if(err){
             console.log(err);
         }
